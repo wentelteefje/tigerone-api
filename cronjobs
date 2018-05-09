@@ -1,0 +1,4 @@
+# tigerone cron jobs
+*/5 * * * *   user  python /home/user/tigerone-api/tigerone-api.py
+@reboot sudo -u user -i /home/user/tigerone-api/cron_prepare.sh
+
