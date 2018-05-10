@@ -10,7 +10,7 @@ cursor = mariadb_connection.cursor()
 
 # Import IPs from hosts file
 host = []
-for line in open('hosts'):
+for line in open('/home/user/tigerone-api/hosts'):
     host.append(line)
 
 # Set claymore API parameters
