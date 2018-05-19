@@ -32,10 +32,10 @@ if ($mysqli->connect_errno) {
     $result = mysqli_query($mysqli,"SELECT * FROM stats");
 
     echo "<table>"; // start a table tag in the HTML
-    echo "<tr><th>IP</th><th>Nethash, shares, rejected shares</th><th>Hashes</th><th>Temperatures and Fanspeeds (T,f)</th></tr>";
+    echo "<tr><th>IP</th><th>Nethash, shares, rejected shares</th><th>Hashes</th><th>Temperatures and Fanspeeds (T,f)</th><th>Active</th></tr>";
     while($row = mysqli_fetch_array($result))
       {
-      echo "<tr><td><a href=\"http://" . $row['IP'] . ":3333/\">" . $row['IP'] . "</a></td><td>" . $row['NETHASH'] . "</td><td>" . $row['HASHES'] . "</td><td>" . $row['TEMPSFANS'] . "</td>";
+      echo "<tr><td><a href=\"http://" . $row['IP'] . ":3333/\">" . $row['IP'] . "</a></td><td>" . $row['NETHASH'] . "</td><td>" . $row['HASHES'] . "</td><td>" . $row['TEMPSFANS'] . "</td><td>" . $row['ACTIVE'] . "</td>";
       echo "</tr>";
       }
     echo "</table>";
