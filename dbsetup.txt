@@ -1,0 +1,31 @@
+1.) Start apache: $ sudo systemctl start httpd.service
+Content goes in /srv/http
+2.) Start mariadb: $ sudo systemctl start mariadb.service
+
+
+root,password
+userxy,1234
+
+mysql> CREATE DATABASE MMU;
+mysql> USE MMU;
+mysql> CREATE TABLE devices(LOCATION varchar(20) NOT NULL, MAC varchar(255) NOT NULL, PRIMARY KEY (LOCATION));
+
+
+mysql> CREATE USER 'userxy'@'localhost' IDENTIFIED BY '1234';
+mysql> GRANT ALL PRIVILEGES ON MMU.* TO 'userxy'@'localhost';
+mysql> FLUSH PRIVILEGES;
+mysql> quit
+
+
+Alle Zeilen loeschen
+MariaDB [MMU]> DELETE FROM devices;
+
+
+CREATE TABLE stats(IP varchar(20) NOT NULL, NETHASH varchar(255) NOT NULL,HASHES varchar(255) NOT NULL,TEMPSFANS varchar(255) NOT NULL,ACTIVE INT NOT NULL, PRIMARY KEY (IP));
+
+
+
+stats (IP,NETHASH,HASHES,TEMPSFANS,ACTIVE
+
+UPDATE stats SET ACTIVE = "N" WHERE IP = "192.168.26.111";
+INSERT INTO stats (IP,NETHASH,HASHES,TEMPSFANS,ACTIVE) VALUES ("192.168.26.111","2","aaa","70", 1)
