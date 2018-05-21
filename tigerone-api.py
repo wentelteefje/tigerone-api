@@ -36,7 +36,10 @@ for TCP_IP in host:
         tempsfans = tempsfans.replace(";", " ")
         active = 1
         # write to db
-        cursor.execute("REPLACE INTO stats (IP,NETHASH,HASHES,TEMPSFANS,ACTIVE) VALUES (%s,%s,%s,%s,%s)", (TCP_IP, nethash, hashes, tempsfans, active))
+        try:
+            cursor.execute("REPLACE INTO stats (IP,NETHASH,HASHES,TEMPSFANS,ACTIVE) VALUES (%s,%s,%s,%s,%s)", (TCP_IP, nethash, hashes, tempsfans, active))
+        except mariadb.Error as error:
+            print("Error: {}".format(error))
         mariadb_connection.commit()
     except socket.error:
         # Catch error
@@ -45,6 +48,9 @@ for TCP_IP in host:
         tempsfans = "0"
         active = 0
         #cursor.execute("UPDATE stats SET ACTIVE = "N" WHERE IP = %s", TCP_IP)
-        cursor.execute("REPLACE INTO stats (IP,NETHASH,HASHES,TEMPSFANS,ACTIVE) VALUES (%s,%s,%s,%s,%s)", (TCP_IP, nethash, hashes, tempsfans, active))
+        try:
+            cursor.execute("REPLACE INTO stats (IP,NETHASH,HASHES,TEMPSFANS,ACTIVE) VALUES (%s,%s,%s,%s,%s)", (TCP_IP, nethash, hashes, tempsfans, active))
+        except mariadb.Error as error:
+            print("Error: {}".format(error))
     finally:
         s.close()
