@@ -52,5 +52,6 @@ for TCP_IP in host:
             cursor.execute("REPLACE INTO stats (IP,NETHASH,HASHES,TEMPSFANS,ACTIVE) VALUES (%s,%s,%s,%s,%s)", (TCP_IP, nethash, hashes, tempsfans, active))
         except mariadb.Error as error:
             print("Error: {}".format(error))
+        mariadb_connection.commit()
     finally:
         s.close()
